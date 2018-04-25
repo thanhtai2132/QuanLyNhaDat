@@ -1,15 +1,15 @@
 package class_package;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class main extends JFrame {
-
-	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -33,10 +33,28 @@ public class main extends JFrame {
 	public main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		getContentPane().setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(10, 11, 346, 20);
+		getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JButton btnThm = new JButton("Th\u00EAm");
+		btnThm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnThm.setBounds(10, 42, 89, 23);
+		getContentPane().add(btnThm);
+		
+		JButton btnXa = new JButton("X\u00F3a");
+		btnXa.setBounds(109, 42, 89, 23);
+		getContentPane().add(btnXa);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(366, 10, 58, 23);
+		getContentPane().add(btnNewButton);
 	}
-
 }

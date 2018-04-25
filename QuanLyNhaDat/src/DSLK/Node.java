@@ -27,4 +27,10 @@ public class Node {
 	public void setPnext(Node pnext) {
 		this.pnext = pnext;
 	}
+
+	public void Swap(Node n) {
+		ThuaDat temp = n.getData();
+		n.setData(this.getData());
+		this.setData(temp);
+	}
 }

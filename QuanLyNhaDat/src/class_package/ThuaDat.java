@@ -1,5 +1,8 @@
 package class_package;
 
+import enum_package.LoaiNha;
+import enum_package.MucDich;
+
 public class ThuaDat {
 	private DiaChi diachi;
 	private double dientich;

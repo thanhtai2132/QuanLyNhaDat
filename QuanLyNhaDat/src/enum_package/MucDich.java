@@ -1,4 +1,4 @@
-package class_package;
+package enum_package;
 
 public enum MucDich {
 	NHA_O,
