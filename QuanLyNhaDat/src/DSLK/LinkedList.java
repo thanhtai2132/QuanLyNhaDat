@@ -13,6 +13,13 @@ public class LinkedList {
 		head = n;
 	}
 
+	public ThuaDat getThuaDatTaiViTri(int index) {
+		Node n = head;
+		for (int i = 0; i <= index; i++)
+			n = n.getPnext();
+		return n.getData();
+	}
+
 	public void Xoa(String input) {
 		Node nodeCanTim = head;
 		while (nodeCanTim != null) {
