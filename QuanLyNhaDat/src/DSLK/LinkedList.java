@@ -15,46 +15,61 @@ public class LinkedList {
 
 	public ThuaDat getThuaDatTaiViTri(int index) {
 		Node n = head;
-		for (int i = 0; i <= index; i++)
+		for (int i = 0; i < index; i++)
 			n = n.getPnext();
 		return n.getData();
 	}
 
-	public void Xoa(String input) {
-		Node nodeCanTim = head;
-		while (nodeCanTim != null) {
-			if (nodeCanTim.getData().getDiachi().getTenduong().toUpperCase().equals(input.toUpperCase())) {
-				Node nodeGan = head;
-				while (nodeGan != nodeCanTim)
-					nodeGan = nodeGan.getPnext();
-				Node nodeKeTiep = nodeCanTim.getPnext();
-				nodeGan.setPnext(nodeKeTiep);
-				nodeCanTim.setPnext(null);
-				break;
+	public void Xoa(String tieuchi) {
+		if (head != null) {
+			Node nodeCanTim = head;
+			while (nodeCanTim != null) {
+				if (nodeCanTim.getData().getChusohuu().toUpperCase().contains(tieuchi.toUpperCase())
+						|| nodeCanTim.getData().getDiachi().getPhuong().toUpperCase().contains(tieuchi.toUpperCase())
+						|| nodeCanTim.getData().getDiachi().getQuan().toUpperCase().contains(tieuchi.toUpperCase())
+						|| nodeCanTim.getData().getDiachi().getSonha().toUpperCase().contains(tieuchi.toUpperCase())
+						|| nodeCanTim.getData().getDiachi().getTenduong().toUpperCase().contains(tieuchi.toUpperCase())
+						|| Double.toString(nodeCanTim.getData().getDientich()).equals(tieuchi)
+						|| Double.toString(nodeCanTim.getData().getGiatien()).equals(tieuchi)
+						|| nodeCanTim.getData().getLoainha().getName().toUpperCase().equals(tieuchi.toUpperCase())
+						|| nodeCanTim.getData().getMucdich().getName().toUpperCase().equals(tieuchi.toUpperCase())) {
+					if (nodeCanTim == head) {
+						Node temp = head;
+						head = head.getPnext();
+						temp.setPnext(null);
+						nodeCanTim = head;
+					} else {
+						Node nodeOTruoc = head;
+						while (nodeOTruoc.getPnext() != nodeCanTim)
+							nodeOTruoc = nodeOTruoc.getPnext();
+						Node nodeOSau = nodeCanTim.getPnext();
+						nodeOTruoc.setPnext(nodeOSau);
+						nodeCanTim.setPnext(null);
+						nodeCanTim = head;
+					}
+				} else
+					nodeCanTim = nodeCanTim.getPnext();
 			}
-			nodeCanTim = nodeCanTim.getPnext();
 		}
 	}
 
-	public void Tim(String tieuchi) {
+	public String Tim(String tieuchi) {
 		Node n = head;
-		if (n.getData().getChusohuu().toUpperCase().contains(tieuchi.toUpperCase())
-				|| n.getData().getDiachi().getPhuong().toUpperCase().contains(tieuchi.toUpperCase())
-				|| n.getData().getDiachi().getQuan().toUpperCase().contains(tieuchi.toUpperCase())
-				|| n.getData().getDiachi().getSonha().toUpperCase().contains(tieuchi.toUpperCase())
-				|| n.getData().getDiachi().getTenduong().toUpperCase().contains(tieuchi.toUpperCase())
-				|| Double.toString(n.getData().getDientich()).equals(tieuchi)
-				|| Double.toString(n.getData().getGiatien()).equals(tieuchi)
-				|| n.getData().getLoainha().toString().toUpperCase().equals(tieuchi.toUpperCase())
-				|| n.getData().getMucdich().toString().toUpperCase().equals(tieuchi.toUpperCase())) {
-			System.out.println(n.getData().getChusohuu() + "\n" + n.getData().getDiachi().getPhuong() + "\n"
-					+ n.getData().getDiachi().getQuan() + "\n" + n.getData().getDiachi().getSonha() + "\n"
-					+ n.getData().getDiachi().getTenduong() + "\n" + Double.toString(n.getData().getDientich()) + "\n"
-					+ Double.toString(n.getData().getGiatien()) + "\n"
-					+ n.getData().getLoainha().toString().toUpperCase() + "\n" + n.getData().getMucdich().toString()
-					+ "\n");
-		} else
-			n = n.getPnext();
+		while (n != null) {
+			if (n.getData().getChusohuu().toUpperCase().contains(tieuchi.toUpperCase())
+					|| n.getData().getDiachi().getPhuong().toUpperCase().contains(tieuchi.toUpperCase())
+					|| n.getData().getDiachi().getQuan().toUpperCase().contains(tieuchi.toUpperCase())
+					|| n.getData().getDiachi().getSonha().toUpperCase().contains(tieuchi.toUpperCase())
+					|| n.getData().getDiachi().getTenduong().toUpperCase().contains(tieuchi.toUpperCase())
+					|| Double.toString(n.getData().getDientich()).equals(tieuchi)
+					|| Double.toString(n.getData().getGiatien()).equals(tieuchi)
+					|| n.getData().getLoainha().getName().toUpperCase().equals(tieuchi.toUpperCase())
+					|| n.getData().getMucdich().getName().toUpperCase().equals(tieuchi.toUpperCase())) {
+				return n.getData().toString();
+			} else
+				n = n.getPnext();
+		}
+		return "Không tìm thấy";
 	}
 
 	public void SapXep(TieuChi tc) {
@@ -95,8 +110,10 @@ public class LinkedList {
 	public int Size() {
 		int count = 0;
 		Node n = head;
-		while (n != null)
+		while (n != null) {
+			n = n.getPnext();
 			count++;
+		}
 		return count;
 	}
 

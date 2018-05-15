@@ -61,8 +61,15 @@ public class ThuaDat {
 
 	@Override
 	public String toString() {
-		return "ThuaDat [diachi=" + diachi + ", dientich=" + dientich + ", chusohuu=" + chusohuu + ", loainha="
-				+ loainha + ", mucdich=" + mucdich + ", giatien=" + giatien + "]";
+		if (!diachi.getPhuong().isEmpty())
+			return "Địa chỉ: " + diachi.getSonha() + ", đường " + diachi.getTenduong() + ", phường "
+					+ diachi.getPhuong() + ", quận " + diachi.getQuan() + "\n Diện tích: " + dientich + " m²"
+					+ "\n Chủ sở hữu :" + chusohuu + "\n Loại nhà: " + loainha.getName() + "\n Mục đích: "
+					+ mucdich.getName() + "\n Giá tiền: " + giatien;
+		else
+			return "Địa chỉ: " + diachi.getSonha() + ", đường " + diachi.getTenduong() + ", quận " + diachi.getQuan()
+					+ "\n Diện tích: " + dientich + "\n Chủ sở hữu :" + chusohuu + "\n Loại nhà: " + loainha.getName()
+					+ "\n Mục đích: " + mucdich.getName() + "\n Giá tiền: " + giatien;
 	}
 
 }

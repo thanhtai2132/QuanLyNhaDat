@@ -1,15 +1,14 @@
 package class_package;
 
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,22 +18,22 @@ import javax.swing.border.EmptyBorder;
 import enum_package.LoaiNha;
 import enum_package.MucDich;
 
-public class ThemFrame extends JFrame {
+public class ThemFrame extends JDialog {
 	private static ThemFrame frame;
 	private JPanel contentPane;
 	private JPanel panel;
 	private JLabel lblDiaChi;
 	private JLabel lblSoNha;
 	private JTextField txtSoNha;
-	private JTextField txtQuan;
+	private JTextField txtPhuong;
 	private JLabel lblPhuong;
 	private JLabel lblDienTich;
 	private JTextField txtDienTich;
-	private JTextField txtPhuong;
+	private JTextField txtDuong;
 	private JLabel lblDuong;
 	private JLabel lblChu;
 	private JTextField txtChu;
-	private JTextField txtDuong;
+	private JTextField txtQuan;
 	private JLabel lblQuan;
 	private JLabel lblGiaTien;
 	private JTextField txtGiaTien;
@@ -51,27 +50,13 @@ public class ThemFrame extends JFrame {
 	private JPanel panel_1;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frame = new ThemFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public ThemFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public ThemFrame(Frame parent, boolean modal) {
+		super(parent, modal);
+		setTitle("Thêm thửa đất");
 		setBounds(100, 100, 603, 407);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -93,22 +78,22 @@ public class ThemFrame extends JFrame {
 		lblPhuong = new JLabel("Phường");
 		panel.add(lblPhuong);
 
-		txtQuan = new JTextField();
-		txtQuan.setColumns(18);
-		panel.add(txtQuan);
+		txtPhuong = new JTextField();
+		txtPhuong.setColumns(18);
+		panel.add(txtPhuong);
 
 		lblDiaChi = new JLabel("Địa chỉ");
 		lblDiaChi.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblDiaChi.setBounds(10, 11, 70, 30);
 		contentPane.add(lblDiaChi);
 
-		lblDienTich = new JLabel("Diện tích");
+		lblDienTich = new JLabel("Diện tích (m²)");
 		lblDienTich.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblDienTich.setBounds(10, 202, 60, 14);
+		lblDienTich.setBounds(10, 202, 90, 14);
 		contentPane.add(lblDienTich);
 
 		txtDienTich = new JTextField();
-		txtDienTich.setBounds(80, 200, 150, 20);
+		txtDienTich.setBounds(110, 200, 150, 20);
 		contentPane.add(txtDienTich);
 		txtDienTich.setColumns(10);
 
@@ -124,7 +109,7 @@ public class ThemFrame extends JFrame {
 
 		JLabel lblMucDich = new JLabel("Mục đích");
 		lblMucDich.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblMucDich.setBounds(10, 281, 60, 14);
+		lblMucDich.setBounds(10, 281, 90, 14);
 		contentPane.add(lblMucDich);
 
 		JLabel lblLoaiNha = new JLabel("Loại nhà");
@@ -132,14 +117,14 @@ public class ThemFrame extends JFrame {
 		lblLoaiNha.setBounds(337, 234, 80, 14);
 		contentPane.add(lblLoaiNha);
 
-		String list_loainha[] = getNames(LoaiNha.class);
+		String list_loainha[] = LoaiNha.getValues();
 		comboLoaiNha = new JComboBox(list_loainha);
 		comboLoaiNha.setBounds(427, 231, 150, 22);
 		contentPane.add(comboLoaiNha);
 
-		String list_mucdich[] = getNames(MucDich.class);
+		String list_mucdich[] = MucDich.getValues();
 		comboMucDich = new JComboBox(list_mucdich);
-		comboMucDich.setBounds(80, 278, 150, 22);
+		comboMucDich.setBounds(110, 278, 150, 22);
 		contentPane.add(comboMucDich);
 
 		btnOK = new JButton("OK");
@@ -154,11 +139,11 @@ public class ThemFrame extends JFrame {
 
 		lblGiaTien = new JLabel("Giá tiền");
 		lblGiaTien.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblGiaTien.setBounds(10, 239, 60, 14);
+		lblGiaTien.setBounds(10, 239, 90, 14);
 		contentPane.add(lblGiaTien);
 
 		txtGiaTien = new JTextField();
-		txtGiaTien.setBounds(80, 237, 150, 20);
+		txtGiaTien.setBounds(110, 237, 150, 20);
 		contentPane.add(txtGiaTien);
 		txtGiaTien.setColumns(10);
 
@@ -170,16 +155,16 @@ public class ThemFrame extends JFrame {
 		lblDuong = new JLabel("Tên đường");
 		panel_1.add(lblDuong);
 
-		txtPhuong = new JTextField();
-		panel_1.add(txtPhuong);
-		txtPhuong.setColumns(18);
+		txtDuong = new JTextField();
+		panel_1.add(txtDuong);
+		txtDuong.setColumns(18);
 
 		lblQuan = new JLabel("Quận");
 		panel_1.add(lblQuan);
 
-		txtDuong = new JTextField();
-		panel_1.add(txtDuong);
-		txtDuong.setColumns(18);
+		txtQuan = new JTextField();
+		panel_1.add(txtQuan);
+		txtQuan.setColumns(18);
 	}
 
 	public void LayDuLieu() {
@@ -197,34 +182,28 @@ public class ThemFrame extends JFrame {
 	}
 
 	private LoaiNha getLoaiNha(int index) {
-		int position = 0;
 		for (LoaiNha element : LoaiNha.values()) {
-			if (position == index)
+			if (element.ordinal() == index)
 				return element;
 		}
 		return null;
 	}
 
 	private MucDich getMucDich(int index) {
-		int position = 0;
 		for (MucDich element : MucDich.values()) {
-			if (position == index)
+			if (element.ordinal() == index)
 				return element;
 		}
 		return null;
-	}
-
-	public static String[] getNames(Class<? extends Enum<?>> e) {
-		return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
 	}
 
 	private class HandleClass implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equals("OK")) {
-				if (!txtChu.getText().isEmpty() && !txtDienTich.getText().isEmpty() && !txtDuong.getText().isEmpty()
-						&& !txtGiaTien.getText().isEmpty() && !txtPhuong.getText().isEmpty()
-						&& !txtQuan.getText().isEmpty() && !txtSoNha.getText().isEmpty()) {
+				if (!txtChu.getText().isEmpty() && !txtDienTich.getText().isEmpty() && !txtQuan.getText().isEmpty()
+						&& !txtGiaTien.getText().isEmpty() && !txtDuong.getText().isEmpty()
+						&& !txtSoNha.getText().isEmpty()) {
 					LayDuLieu();
 					DiaChi diachi = new DiaChi(sonha, duong, phuong, quan);
 					ThuaDat td = new ThuaDat();
@@ -235,14 +214,28 @@ public class ThemFrame extends JFrame {
 					td.setLoainha(loainha);
 					td.setMucdich(mucdich);
 					MainFrame.danhSachThuaDat.Them(td);
-					dispose();
+					JOptionPane.showMessageDialog(frame, "Đã thêm thành công", "Thành công!",
+							JOptionPane.PLAIN_MESSAGE);
+					ResetForm();
 				} else {
 					JOptionPane.showMessageDialog(frame, "Xin hãy nhập đầy đủ các trường", "Lỗi",
 							JOptionPane.ERROR_MESSAGE);
 				}
-			} else
+			} else {
+				MainFrame.CapNhat();
 				dispose();
+			}
 		}
 
+	}
+
+	public void ResetForm() {
+		txtChu.setText("");
+		txtDienTich.setText("");
+		txtQuan.setText("");
+		txtGiaTien.setText("");
+		txtDuong.setText("");
+		txtPhuong.setText("");
+		txtSoNha.setText("");
 	}
 }
