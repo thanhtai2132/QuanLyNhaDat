@@ -215,7 +215,7 @@ public class ThemFrame extends JDialog {
 					td.setMucdich(mucdich);
 					MainFrame.danhSachThuaDat.Them(td);
 					JOptionPane.showMessageDialog(frame, "Đã thêm thành công", "Thành công!",
-							JOptionPane.PLAIN_MESSAGE);
+							JOptionPane.INFORMATION_MESSAGE, MainFrame.success_icon);
 					ResetForm();
 				} else {
 					JOptionPane.showMessageDialog(frame, "Xin hãy nhập đầy đủ các trường", "Lỗi",

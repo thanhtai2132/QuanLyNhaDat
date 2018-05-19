@@ -43,4 +43,9 @@ public class DiaChi {
 		this.quan = quan;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("%s, %s, %s, %s", sonha, tenduong, phuong, quan);
+	}
+
 }

@@ -20,7 +20,14 @@ public class LinkedList {
 		return n.getData();
 	}
 
-	public void Xoa(String tieuchi) {
+	public boolean isEmpty() {
+		if (head == null)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean Xoa(String tieuchi) {
 		if (head != null) {
 			Node nodeCanTim = head;
 			while (nodeCanTim != null) {
@@ -50,7 +57,9 @@ public class LinkedList {
 				} else
 					nodeCanTim = nodeCanTim.getPnext();
 			}
-		}
+			return true;
+		} else
+			return false;
 	}
 
 	public String Tim(String tieuchi) {

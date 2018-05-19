@@ -62,10 +62,8 @@ public class ThuaDat {
 	@Override
 	public String toString() {
 		if (!diachi.getPhuong().isEmpty())
-			return "Địa chỉ: " + diachi.getSonha() + ", đường " + diachi.getTenduong() + ", phường "
-					+ diachi.getPhuong() + ", quận " + diachi.getQuan() + "\n Diện tích: " + dientich + " m²"
-					+ "\n Chủ sở hữu :" + chusohuu + "\n Loại nhà: " + loainha.getName() + "\n Mục đích: "
-					+ mucdich.getName() + "\n Giá tiền: " + giatien;
+			return String.format("Địa chỉ: %s\nDiện tích: %fm²\n Chủ sở hữu : %s\n Loại nhà: %s\n Mục đích: %s",
+					diachi.toString(), dientich, chusohuu, loainha.getName(), mucdich.getName());
 		else
 			return "Địa chỉ: " + diachi.getSonha() + ", đường " + diachi.getTenduong() + ", quận " + diachi.getQuan()
 					+ "\n Diện tích: " + dientich + "\n Chủ sở hữu :" + chusohuu + "\n Loại nhà: " + loainha.getName()
