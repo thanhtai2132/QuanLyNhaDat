@@ -1,6 +1,7 @@
 package DSLK;
 
 import class_package.ThuaDat;
+import class_package.TimFrame;
 import enum_package.TieuChi;
 
 public class LinkedList {
@@ -38,8 +39,8 @@ public class LinkedList {
 						|| nodeCanTim.getData().getDiachi().getTenduong().toUpperCase().contains(tieuchi.toUpperCase())
 						|| Double.toString(nodeCanTim.getData().getDientich()).equals(tieuchi)
 						|| Double.toString(nodeCanTim.getData().getGiatien()).equals(tieuchi)
-						|| nodeCanTim.getData().getLoainha().getName().toUpperCase().equals(tieuchi.toUpperCase())
-						|| nodeCanTim.getData().getMucdich().getName().toUpperCase().equals(tieuchi.toUpperCase())) {
+						|| nodeCanTim.getData().getLoainha().getName().toUpperCase().contains(tieuchi.toUpperCase())
+						|| nodeCanTim.getData().getMucdich().getName().toUpperCase().contains(tieuchi.toUpperCase())) {
 					if (nodeCanTim == head) {
 						Node temp = head;
 						head = head.getPnext();
@@ -62,23 +63,27 @@ public class LinkedList {
 			return false;
 	}
 
-	public String Tim(String tieuchi) {
-		Node n = head;
-		while (n != null) {
-			if (n.getData().getChusohuu().toUpperCase().contains(tieuchi.toUpperCase())
-					|| n.getData().getDiachi().getPhuong().toUpperCase().contains(tieuchi.toUpperCase())
-					|| n.getData().getDiachi().getQuan().toUpperCase().contains(tieuchi.toUpperCase())
-					|| n.getData().getDiachi().getSonha().toUpperCase().contains(tieuchi.toUpperCase())
-					|| n.getData().getDiachi().getTenduong().toUpperCase().contains(tieuchi.toUpperCase())
-					|| Double.toString(n.getData().getDientich()).equals(tieuchi)
-					|| Double.toString(n.getData().getGiatien()).equals(tieuchi)
-					|| n.getData().getLoainha().getName().toUpperCase().equals(tieuchi.toUpperCase())
-					|| n.getData().getMucdich().getName().toUpperCase().equals(tieuchi.toUpperCase())) {
-				return n.getData().toString();
-			} else
+	public boolean Tim(String tieuchi) {
+
+		if (head != null) {
+			Node n = head;
+			while (n != null) {
+				if (n.getData().getChusohuu().toUpperCase().contains(tieuchi.toUpperCase())
+						|| n.getData().getDiachi().getPhuong().toUpperCase().contains(tieuchi.toUpperCase())
+						|| n.getData().getDiachi().getQuan().toUpperCase().contains(tieuchi.toUpperCase())
+						|| n.getData().getDiachi().getSonha().toUpperCase().contains(tieuchi.toUpperCase())
+						|| n.getData().getDiachi().getTenduong().toUpperCase().contains(tieuchi.toUpperCase())
+						|| Double.toString(n.getData().getDientich()).equals(tieuchi)
+						|| Double.toString(n.getData().getGiatien()).equals(tieuchi)
+						|| n.getData().getLoainha().getName().toUpperCase().contains(tieuchi.toUpperCase())
+						|| n.getData().getMucdich().getName().toUpperCase().contains(tieuchi.toUpperCase())) {
+					TimFrame.ketQuaTim.Them(n.getData());
+				}
 				n = n.getPnext();
+			}
+			return true;
 		}
-		return "Không tìm thấy";
+		return false;
 	}
 
 	public void SapXep(TieuChi tc) {

@@ -9,12 +9,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+
+import DSLK.LinkedList;
 
 public class TimFrame extends JDialog {
-	private JTextArea txtHienThi;
+	private static JTextArea txtHienThi;
 	private JScrollPane scrollpane;
 	private JPanel contentPane;
 	private static TimFrame frame;
+	public static LinkedList ketQuaTim;
 
 	/**
 	 * Create the frame.
@@ -28,6 +32,8 @@ public class TimFrame extends JDialog {
 		setContentPane(contentPane);
 		contentPane.setLayout(new FlowLayout());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+		ketQuaTim = new LinkedList();
 
 		txtHienThi = new JTextArea();
 		txtHienThi.setFont(new Font("Serif", Font.ITALIC, 16));
@@ -44,8 +50,25 @@ public class TimFrame extends JDialog {
 	public void HienThiKetQua(String tieuchi) {
 		if (tieuchi.isEmpty())
 			JOptionPane.showMessageDialog(frame, "Bạn chưa nhập tiêu chí", "Lỗi", JOptionPane.ERROR_MESSAGE);
-		else
-			txtHienThi.setText(MainFrame.danhSachThuaDat.Tim(tieuchi));
+		else {
+			if (MainFrame.danhSachThuaDat.Tim(tieuchi)) {
+				for (int i = 0; i < ketQuaTim.Size(); i++) {
+					{
+						showMessage(ketQuaTim.getThuaDatTaiViTri(i).toString());
+						if (i < ketQuaTim.Size() - 1)
+							showMessage("\n\n");
+					}
+				}
+			}
+		}
+	}
+
+	public static void showMessage(final String text) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				txtHienThi.append(text);
+			}
+		});
 	}
 
 }

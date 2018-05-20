@@ -199,7 +199,7 @@ public class MainFrame extends JFrame {
 			if (luachon == JOptionPane.YES_OPTION) {
 				Workbook wb = new HSSFWorkbook();
 				FileOperation buffer = new FileOperation(wb);
-				buffer.write(danhSachThuaDat);				
+				buffer.write(danhSachThuaDat);
 
 				try {
 					FileOutputStream fileOut = new FileOutputStream("danh_sach.xls");
